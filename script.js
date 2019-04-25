@@ -10,6 +10,7 @@ const playStat = document.querySelector("#play-stat")
 const status = document.querySelector("#status")
 const imageDiv = document.querySelector("#image-container")
 
+
 //creates a variable named count and initalizes (starts at. first time) it with a value of zero
 let plays = 0
 let feeds = 0
@@ -19,6 +20,7 @@ let happiness = 0
 
 
 feedButton.addEventListener('click', (e) => {
+    console.log(e)
     if (hunger>0){
          feeds += 1
          hunger -= 1
@@ -38,15 +40,24 @@ playButton.addEventListener('click', (e) => {
 })
 
 //Timers
-var myVar = setInterval(myTimer, 2000);
-
 function myTimer() {
     if (happiness>0){
       happiness -= 1  
     }
-    if (hunger >0){
+    if (hunger >=0){
      hunger += 1        
     }
      playStat.innerHTML = `Happiness: ${happiness}`
      feedStat.innerHTML = `Hunger: ${hunger}`
 }
+
+function update(){
+    if (hunger > 10){
+        imageDiv.classList.add('hungry')
+    } else {
+        imageDiv.classList.remove('hungry')
+    }
+}
+
+setInterval(myTimer, 2000);
+setInteveral(update,500);
